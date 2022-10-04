@@ -1,20 +1,19 @@
 require_relative "manager.rb"
 
-class Employee
+class Employee 
     attr_reader :name, :salary, :title, :boss
+
     def initialize(name, salary, title, boss=nil)
         @name = name
         @salary = salary
         @title = title
-        @boss = boss
+        self.boss= boss
     end
 
-    def bonus(multiplier)
-        bonus = (salary) * multiplier
-    end
+
 
     def boss=(node)
-        if node! = nil
+        if node != nil
             @boss.employees.delete(self) if @boss != nil
             @boss = node
             node.employees << self
@@ -23,17 +22,16 @@ class Employee
         end
     end
 
-
-
-end
-
-def parent=(node)
-    if node != nil
-        @parent.children.delete(self) if @parent != nil
-        @parent = node
-        node.children << self
-    else
-        @parent = nil
+    private
+    def bonus(multiplier)
+        (salary) * multiplier
     end
-    # self
+
+
 end
+
+
+puts ned = Employee.new("ned",1000000, "founder")
+# p darren = Employee.new("darren",78000,"ta_manager","ned")
+# p shawna = Employee.new("shawna",12000,"ta","darren")
+# p david = Employee.new("david",10000,"ta","darren")
