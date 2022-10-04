@@ -1,6 +1,7 @@
 require_relative "employee.rb"
 
 class Manager < Employee
+    attr_accessor :employees
     def initialize
         @employees = []
     end
@@ -24,12 +25,14 @@ class Manager < Employee
     def employees_salaries
         total_pay = 0
         @employees.each do |employee|
+            if employee.employees.empty?
+                total_pay += employee.employees_salaries
+            end
             total_pay += employee.salary 
         end
         total_pay 
     end
 
-    private
     def bonus(multiplier)
         employees_salaries * multiplier
     end
@@ -41,3 +44,5 @@ end
 # p darren = Employee.new("darren",78000,"ta_manager","ned")
 # p shawna = Employee.new("shawna",12000,"ta","darren")
 # p david = Employee.new("david",10000,"ta","darren")
+
+# p ned.employees_salaries
