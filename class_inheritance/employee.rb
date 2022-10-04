@@ -10,15 +10,15 @@ class Employee
         self.boss= boss
     end
 
-    def boss=(node)
-        if node != nil
-            @boss.employees.delete(self) if @boss != nil
-            @boss = node
-            node.employees << self
-        else
-            @boss = nil
-        end
-    end
+    # def boss=(node)
+    #     if node != nil
+    #         @boss.employees.delete(self) if @boss != nil
+    #         @boss = node
+    #         node.employees << self
+    #     else
+    #         @boss = nil
+    #     end
+    # end
 
     def bonus(multiplier)
         (salary) * multiplier
@@ -27,33 +27,33 @@ end
 
 class Manager < Employee
     attr_accessor :employees
-    def initialize(name, salary, title, boss=nil, employees)
+    def initialize(name, salary, title, boss=nil, employees = [])
         super(name, salary, title, boss)
         @employees = employees
     end
 
 
-    def add_employee(node)
-        if node != nil && @employees.none? { |employee| employee.name == node.name}
-            node.boss = self
-        end
-    end
+    # def add_employee(node)
+    #     if node != nil && @employees.none? { |employee| employee.name == node.name}
+    #         node.boss = self
+    #     end
+    # end
 
-    def remove_employee(node)
-        if @employees.any? { |employee| employee.name == node.name }
-            node.boss = nil
-            @employees.delete(node)
-        else
-            raise "No such employee"
-        end
-    end
+    # def remove_employee(node)
+    #     if @employees.any? { |employee| employee.name == node.name }
+    #         node.boss = nil
+    #         @employees.delete(node)
+    #     else
+    #         raise "No such employee"
+    #     end
+    # end
 
     def employees_salaries
         total_pay = 0
         @employees.each do |employee|
-            if employee.employees.empty?
-                total_pay += employee.employees_salaries
-            end
+            # if employee.employees.empty?
+            #     total_pay += employee.employees_salaries
+            # end
             total_pay += employee.salary 
         end
         total_pay 
@@ -65,8 +65,8 @@ class Manager < Employee
 
 end
 
-p ned = Manager.new("ned",1000000, "founder",['darren'])
-p darren = Manager.new("darren",78000,"ta_manager", ['shawna', 'david'], ned)
+p ned = Manager.new("ned",1000000, "founder",nil)
+p darren = Manager.new("darren",78000,"ta_manager", [shawna, david], ned)
 p shawna = Employee.new("shawna",12000,"ta",darren)
 p david = Employee.new("david",10000,"ta",darren)
 
