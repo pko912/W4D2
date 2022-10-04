@@ -4,6 +4,7 @@ class Board
 
     def initialize()
         @rows = Array.new(8) {Array.new(8,nil)}
+        @piece = Piece.new()
     end
 
 
@@ -17,9 +18,18 @@ class Board
         @rows[row][col] = value
     end
 
+    def add_piece(pos)
+        if self[pos] == nil
+            self[pos] = @piece
+            return true
+        else
+            return false
+        end
+    end
 
     def move_piece(start_pos, end_pos)
-        # piece = Piece.new()
+        self[start_pos] = nil
+        self[end_pos] = @piece
     end
 
 end
@@ -32,15 +42,3 @@ end
 
 
 
-
-
-
-
-# class NullPiece < Piece
-
-#     def initialize(start_pos = nil)
-#         @start_pos = start_pos
-
-#     end
-
-# end
